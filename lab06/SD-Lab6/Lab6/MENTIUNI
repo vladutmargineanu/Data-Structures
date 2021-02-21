@@ -1,0 +1,29 @@
+0) In teste, indexarea nodurilor incepe de la 0.
+
+1) Pentru fiecare exercitiu, graful se considera neorientat.
+
+2) Pentru implementarea grafului cu liste de adiacenta se considera ca
+   vectorul `nodes` va contine pe pozitia `i` nodul cu indexul `i`.
+
+3) Pentru exercitiile de tip BFS/DFS, parcurgerile vor incepe din nodul 0.
+
+4) Constructori std::vector
+    - std::vector<int> v(); // Constructor default, capacitatea initiala
+                            // a vectorului este de 0 elemente.
+
+    - std::vector<int> v(size); // Initializeaza vectorul `v` cu
+                                // capacitate initiala de `size` elemente;
+
+    - std::vector<int> v(size, default_value); // Initializeaza vectorul `v`
+                                               // cu capacitate initiala de `size`
+                                               // elemente, fiecare element fiind
+                                               // setat pe valoarea `default_value`.
+                                               // Este util pentru initializarea
+                                               // vectorului de noduri vizitate
+                                               // in cadrul parcurgerilor.
+
+5) Pentru iterarea intr-un vector, se poate folosi keyword-ul auto (laborator 1):
+    std::vector<int> v;
+    for (auto it = v.begin(); it != v.end(); ++it) {
+        std::cout << *it << std::endl;  // Acceseaza si afiseaza valoarea curenta catre care indica iteratorul
+    }
