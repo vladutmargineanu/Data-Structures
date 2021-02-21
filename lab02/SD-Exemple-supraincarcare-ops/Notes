@@ -1,0 +1,83 @@
+
+------------------------Supraîncărcare operatori--------------------------------
+
+Am făcut exemplele de Pair și Set ca să vedeți și alte situații drăguțe în care
+ (sper eu) să aibă mai mult sens supraîncărcarea operatorilor. 
+
+ Rețeta în general e una destul de simplă pentru a face lucrul ăsta 
+ (ține de sintaxă și cu câteva mici excepții, cam la orice operator ne putem 
+ gândi că îi dăm altă semnificație unei clase). 
+
+ De ce am face neapărat asta? Păi o să vedeți în exemple, în cel
+ cu Set, să zicem. Implementarea e una cam ugly și ineficientă, dar nu ne
+ interesează asta acum. Am considerat că un Set conține un vector de size
+ elemente, alocat dinamic și că are doar elemente pozitive (și distincte, că doar
+  e mulțime). Dacă un loc din set e liber, e marcat cu -1. 
+  Parcurgerile se fac mereu liniar.
+Ce e mai special aici e că am supraîncărcat operatorul += pentru a adăuga
+un element în mulțime. Deci practic, eu pot să ascund în implementarea mea
+parcurgerea aceea liniară și să fac ceva mai intuitiv, să dau o nouă
+semnificație acelui "+=". 
+
+Sigur, nu pot să supraîncarc operator pentru tipuri de date primitive 
+(de genul int, float, etc). Doar pentru cele definite de mine (clase sau struct).
+ Dar în general fac asta pentru clase, structurile sunt folosite atunci când am 
+ nevoie mai degrabă doar de ceva să îmi încapsuleze niște date (câmpuri, 
+ proprietăți), dar nu am nevoie de metode speciale pentru acele date. 
+
+Pair-ul l-am făcut mai mult ca analogie la std::pair din C++, ca să vedeți o
+variantă supeer simplificată a lui.
+
+-------------------------------CC și AO-----------------------------------------
+
+CC = Copy Constructor
+AO = Assignment Operator
+
+În lab-ul 2 erau prezentate și acestea și am zis să fac un mic recap cu ele
+anyways. La parțial mulți au greșit aici, considerându-le cam același lucru.
+Well, nu sunt.
+
+Ele merg mână în mână cu destructorul, conform Rule of three. Dacă definesc
+oricare dintre cele 3, trebuie să le definesc și pe celelalte două. De ce?
+Apare problema de deep copy și shallow copy.
+
+În general îmi definesc destructorul când am date alocate dinamic și vreau
+să le dealoc. Compilatorul îmi va genera el și un CC default, dar acolo se
+va face shallow copy pentru acel vector (adică se va copia doar referința 
+lucrurilor alocate dinamic => memory leaks). Deep copy e când eu șterg acel 
+nou vector dacă sunt în AO, apoi creez o nouă referință și copiez element
+cu element ce am de copiat.
+
+AO vs CC
+CC, așa cum îi spune și numele este un constructor. Deci construiește obiecte.
+E ca un constructor obișnuit, doar că pornește de la un obiect deja existent ca
+să se..creeze efectiv. E apelat în multe situații, implicit sau explicit.
+
+AO, pe de altă parte, e apelat cam într-un singur context. E un operator.
+Nu un constructor (nu construiesc obiecte noi cu el). În cazul ăsta, am două 
+obiecte deja create, o1 și o2, să le zicem, cu care m-am jucat deja în cod, au 
+datele lor particularizate. Vreau să fac o1 = o2 => aici se va apela AO. Ce e 
+diferit puțin față de CC? Păi eu deja am obiectul o1 creat. Doar îî schimb 
+datele practic. De-asta trebuie să dealoc memorie în AO (pentru că există deja,
+în CC nu există pentru că abia atunci creez obiectul), dacă e cazul și să aloc 
+alta, în conformitate cu ce găsesc în o2. Și mai trebuie să am grijă la 
+self-assigment (o1 = o1). 
+
+-------------------------Friend classes/functions-------------------------------
+
+Super pe scurt:
+
+Clasele au specificatori: public, private, protected.
+
+Când am totul setat pe private, nu le pot accesa direct (trebuie să îmi fac
+metode publice pentru asta). O metodă drăguță să mai fac asta, este să definesc
+clase și metode prietene. Prin intermediul lor, nu mai am nevoie de acele
+metode publice membre clasei, pentru că o funcție prietenă cu o clasă (care e
+by default, nemembră clasei respectivă), va avea acces la câmpurile clasei,
+chiar dacă sunt private.
+
+Conceptul ăsta e foarte folosit atunci când se face Unit testing. Situația
+ cu care voi v-ați întâlnit cel mai frecvent e supraîncărcarea operatorului 
+ "<<". De ce trebuie făcută cu funcții prietene? Pentru că ostream reprezintă
+ o clasă în C++ (deci nu e ca și set-ul de funcții printf, fprintf, etc), 
+ deci nu e ca și operatorii obișnuiți (+, =, -, etc).

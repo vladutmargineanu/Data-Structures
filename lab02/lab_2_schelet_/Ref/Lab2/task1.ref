@@ -1,0 +1,8 @@
+Print initial values: 
+Complex nr: Re(2) Im(3)
+Complex nr: Re(4.2) Im(5)
+
+Compute sum => Complex nr: Re(6.2) Im(8)
+Compute difference => Complex nr: Re(-2.2) Im(-2)
+Compute product => Complex nr: Re(-6.6) Im(22.6)
+Check Assignment operator => Complex nr: Re(2) Im(3)
