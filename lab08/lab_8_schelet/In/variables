@@ -1,0 +1,9 @@
+true true
+false false
+notfalse true
+falsetrue false
+falsefalse true
+notfalsefalse false
+a false
+b false
+c true
