@@ -1,0 +1,6 @@
+========== Balanced parentheses check ==========
+Checking "[({()})][{}]()": 1
+Checking "{}[(])": 0
+Checking "": 1
+Checking "(": 0
+Checking "]": 0

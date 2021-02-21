@@ -1,0 +1,4 @@
+========== Double queue stack (bonus) ==========
+DoubleQueueStack: Bottom to top: a b c d 
+After popping 2 elements: Bottom to top: a b 
+After pushing 'z': Bottom to top: a b z 

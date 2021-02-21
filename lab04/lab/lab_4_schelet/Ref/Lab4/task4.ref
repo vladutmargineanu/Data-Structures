@@ -1,0 +1,3 @@
+========== Radix sort check ==========
+Before sort: 50 45 75 90 2 24 802 66 
+After sort: 2 24 45 50 66 75 90 802 
