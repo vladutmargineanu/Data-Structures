@@ -1,0 +1,25 @@
+========================= SD 2018 - Laborator 5 ================================
+
+Compilare:
+
+  make build
+
+  Regula build va compila sursele voastre. Pentru simplitate puteti rula
+  doar 'make', fara argumentul 'build'.
+
+Debugging:
+
+  make debug
+
+  Pentru a afisa la STDOUT va trebui sa definiti macroul DEBUG. In Makefile
+  exista o regula predefinita care sa compileze sursele voastre cu acest
+  macro definit.
+
+Rulare checker:
+
+  ./check.sh
+
+  Atentie! Nu este nevoie sa compilati sursele separat.
+
+  Checker-ul va compila/rula sursele voastre si va compara rezultatul cu
+  cel de referinta.
